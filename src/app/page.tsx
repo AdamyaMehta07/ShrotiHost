@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="container-page py-16">
+    <div className="container-page py-16">
       <h1 className="text-4xl font-bold text-ink">Shroti Host</h1>
       <p className="mt-2 text-ink-soft">Design tokens ka test page.</p>
 
@@ -20,6 +20,6 @@ export default function Home() {
         <div className="h-16 rounded bg-brand-600" />
         <div className="h-16 rounded bg-brand-900" />
       </div>
-    </main>
+    </div>
   );
 }
