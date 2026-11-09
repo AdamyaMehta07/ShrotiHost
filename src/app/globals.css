@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens (Shroti Host)
+  Colors logo ke purple se nikale hain. Neutral aur status colors humne add kiye.
+  Tailwind mein ye classes ban jayengi: bg-brand-600, text-ink, border-line, etc.
+*/
+@theme {
+  /* Brand purple (600 main color hai) */
+  --color-brand-50: #fbf1fd;
+  --color-brand-100: #f5e1fa;
+  --color-brand-200: #ebc3f5;
+  --color-brand-300: #dc95ec;
+  --color-brand-400: #c65bdf;
+  --color-brand-500: #b52fd2;
+  --color-brand-600: #a612c6;
+  --color-brand-700: #8a0fa3;
+  --color-brand-800: #6f0d84;
+  --color-brand-900: #4f0a5f;
+
+  /* Neutral colors (text, background, borders) */
+  --color-ink: #16101d;
+  --color-ink-soft: #4b4557;
+  --color-ink-faint: #6b6578;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f7f4fa;
+  --color-line: #e6e0ec;
+  --color-night: #0a0a0f;
+
+  /* Status colors (success, warning, error) */
+  --color-success: #0f7a4a;
+  --color-warning: #a15c00;
+  --color-danger: #b42318;
+
+  /* Fonts: layout.tsx wale Geist font se aate hain */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Corner roundness */
+  --radius-card: 1rem;
+  --radius-control: 0.625rem;
+
+  /* Breakpoints: assessment ke sizes (768, 1024, 1280, 1440) */
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 90rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Poore page ka basic look */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* sticky header ke neeche anchor na chhupe */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keyboard se chalne wale ko focus saaf dikhna chahiye */
+:focus-visible {
+  outline: 3px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Page ki standard width aur side padding. Har page isi ko use karega */
+@utility container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Jinko animation se dikkat hoti hai unke liye animation band */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
