@@ -1,25 +1,35 @@
+import { Accordion } from "@/components/ui/Accordion";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/ui/PageHero";
+import { Section } from "@/components/ui/Section";
+import { sharedFaqs } from "@/data/shared-hosting";
+
 export default function Home() {
   return (
-    <div className="container-page py-16">
-      <h1 className="text-4xl font-bold text-ink">Shroti Host</h1>
-      <p className="mt-2 text-ink-soft">Design tokens ka test page.</p>
+    <>
+      <PageHero
+        eyebrow="Components test"
+        title="Shared Hosting"
+        description="Ye sirf test page hai, components dekhne ke liye."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Hosting", href: "/hosting" },
+          { label: "Shared Hosting" },
+        ]}
+      >
+        <Button href="/hosting">See hosting plans</Button>
+        <Button href="/contact" variant="secondary">Talk to us</Button>
+      </PageHero>
 
-      <div className="mt-8 flex flex-wrap gap-3">
-        <button className="rounded-(--radius-control) bg-brand-600 px-5 py-2.5 font-semibold text-white hover:bg-brand-700">
-          Primary button
-        </button>
-        <button className="rounded-(--radius-control) border border-brand-600 px-5 py-2.5 font-semibold text-brand-700 hover:bg-brand-50">
-          Secondary button
-        </button>
-      </div>
-
-      <div className="mt-8 grid grid-cols-5 gap-2">
-        <div className="h-16 rounded bg-brand-100" />
-        <div className="h-16 rounded bg-brand-300" />
-        <div className="h-16 rounded bg-brand-500" />
-        <div className="h-16 rounded bg-brand-600" />
-        <div className="h-16 rounded bg-brand-900" />
-      </div>
-    </div>
+      <Section title="FAQ test" intro="Sawal pe click karke dekh." tinted>
+        <div className="mb-4 flex gap-2">
+          <Badge>Most popular</Badge>
+          <Badge tone="neutral">Soon</Badge>
+          <Badge tone="success">Included</Badge>
+        </div>
+        <Accordion items={sharedFaqs} />
+      </Section>
+    </>
   );
 }
