@@ -182,3 +182,33 @@ export const sharedFaqs: FaqItem[] = [
       "Many hosting accounts run on the same server, which is what keeps the price low. CloudLinux isolates each account so one busy site cannot eat another's CPU, RAM or I/O. The allocation printed on your plan is yours to use.",
   },
 ];
+
+// "Every plan gets all of this" wali list, live site se
+export const sharedIncludedOnAll: string[] = [
+  "NVMe SSD Storage",
+  "Unmetered Bandwidth",
+  "Free SSL Certificates",
+  "Daily JetBackup Backups",
+  "cPanel + Softaculous",
+  "Managed WordPress",
+  "LiteSpeed + LSCache",
+  "CloudLinux Isolation",
+  "Imunify360 + DDoS Shield",
+  "Malware Scanner",
+  "PHP 8.x + Cron Jobs",
+  "Password & Security Manager",
+  "Email on Your Domain",
+  "Unlimited MySQL Databases",
+  "Free Website Migration",
+  "24/7 Support",
+];
+
+// Plans ke neeche wali chhoti trust line (live site ke words)
+export const sharedTrustPoints: string[] = [
+  "7-day money-back guarantee",
+  "Same renewal price, every cycle",
+  "99.9% uptime target",
+  "Free migration, handled for you",
+  "Instant activation",
+  "24/7 Support",
+];
