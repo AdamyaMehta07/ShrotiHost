@@ -18,8 +18,10 @@ export interface HostingPlan {
   // Price rupees mein, taxes ke bina. 
   prices: Record<BillingCycle, number | null>;
   popular?: boolean;
-  // Jaise "Free .in domain on yearly billing"
-  freeDomainNote?: string;
+    // Jaise ".in domain". Card pe "Free .in domain on yearly billing" ban jata hai
+  freeDomain?: string;
+  // Monthly ke mukable kitne % bachat. Sirf 6 months aur yearly ke liye
+  savings?: Partial<Record<BillingCycle, number>>;
   highlights: PlanHighlights;
   // Card mein "Everything in Launch, plus:" wali line
   includesFrom?: string;

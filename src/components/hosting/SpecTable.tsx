@@ -22,11 +22,19 @@ function Cell({ value }: { value: SpecValue }) {
   return <>{value}</>;
 }
 
-export function SpecTable({ plans, groups }: { plans: HostingPlan[]; groups: SpecGroup[] }) {
+export function SpecTable({
+  plans,
+  groups,
+  caption = "Hosting plan comparison",
+}: {
+  plans: HostingPlan[];
+  groups: SpecGroup[];
+  caption?: string;
+}) {
   return (
     <div className="overflow-x-auto rounded-(--radius-card) border border-line bg-white">
       <table className="w-full min-w-[640px] border-collapse text-sm">
-        <caption className="sr-only">Shared hosting plan comparison</caption>
+        <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="bg-surface-alt">
             <th scope="col" className="sticky left-0 bg-surface-alt px-4 py-3 text-left font-semibold">

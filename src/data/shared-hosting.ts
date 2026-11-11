@@ -10,8 +10,9 @@ export const sharedPlans: HostingPlan[] = [
     id: "launch",
     name: "Launch",
     tagline: "Start something great.",
-    // TODO: 6 months aur yearly ke prices live site ke toggle se lene hain
-    prices: { monthly: 49, sixMonths: null, yearly: null },
+    
+    prices: { monthly: 49, sixMonths: 279, yearly: 499 },
+    savings: { sixMonths: 5, yearly: 15 },
     highlights: {
       cpu: "1 Core",
       ram: "1.5 GB",
@@ -36,7 +37,8 @@ export const sharedPlans: HostingPlan[] = [
     id: "grow",
     name: "Grow",
     tagline: "Everything your growing website needs.",
-    prices: { monthly: 79, sixMonths: null, yearly: null },
+    prices: { monthly: 79, sixMonths: 449, yearly: 799 },
+    savings: { sixMonths: 5, yearly: 16 },
     popular: true,
     highlights: {
       cpu: "1.5 Cores",
@@ -61,8 +63,10 @@ export const sharedPlans: HostingPlan[] = [
     id: "turbo",
     name: "Turbo",
     tagline: "More power for growing websites.",
-    prices: { monthly: 149, sixMonths: null, yearly: null },
-    freeDomainNote: "Free .in domain on yearly billing",
+    prices: { monthly: 149, sixMonths: 849, yearly: 1499 },
+    savings: { sixMonths: 5, yearly: 16 },
+    freeDomain: ".in domain",
+    
     highlights: {
       cpu: "2 Cores",
       ram: "3 GB",
@@ -86,8 +90,9 @@ export const sharedPlans: HostingPlan[] = [
     id: "infinity",
     name: "Infinity",
     tagline: "Maximum shared-hosting power.",
-    prices: { monthly: 249, sixMonths: null, yearly: null },
-    freeDomainNote: "Free .com or .in domain on yearly billing",
+    prices: { monthly: 249, sixMonths: 1399, yearly: 2499 },
+    savings: { sixMonths: 6, yearly: 16 },
+    freeDomain: ".com or .in domain",
     highlights: {
       cpu: "3 Cores",
       ram: "4 GB",

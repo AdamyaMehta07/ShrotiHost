@@ -13,7 +13,14 @@ const highlightLabels: [keyof PlanHighlights, string][] = [
   ["bandwidth", "Bandwidth"],
 ];
 
-// TODO: 6 months aur yearly ki wording live site se match karni hai
+// Price ke saath kya likhna hai (price us cycle ka total hota hai, per-month nahi)
+const priceSuffix: Record<BillingCycle, string> = {
+  monthly: "/mo",
+  sixMonths: "/6 months",
+  yearly: "/year",
+};
+
+// Price ke neeche wali chhoti line (live site jaisi)
 const cycleNote: Record<BillingCycle, string> = {
   monthly: "Billed monthly · excl. taxes",
   sixMonths: "Billed every 6 months · excl. taxes",
@@ -22,6 +29,14 @@ const cycleNote: Record<BillingCycle, string> = {
 
 export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCycle }) {
   const price = plan.prices[cycle];
+  const saving = plan.savings?.[cycle];
+
+  // Free domain ki line: yearly pe "first year included", baaki pe "on yearly billing"
+  const freeDomainLine = plan.freeDomain
+    ? cycle === "yearly"
+      ? `Free ${plan.freeDomain}, first year included`
+      : `Free ${plan.freeDomain} on yearly billing`
+    : null;
 
   return (
     <article
@@ -36,14 +51,15 @@ export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCyc
       <p className="mt-1 text-sm text-ink-soft">{plan.tagline}</p>
 
       <p className="mt-5 text-4xl font-bold text-ink">
-        {price !== null ? `₹${price}` : "—"}
-        <span className="text-base font-medium text-ink-faint">/mo</span>
+        {price !== null ? `₹${price.toLocaleString("en-IN")}` : "—"}
+        <span className="text-base font-medium text-ink-faint">{priceSuffix[cycle]}</span>
       </p>
       <p className="text-xs text-ink-faint">{cycleNote[cycle]}</p>
+      {saving && <p className="mt-1 text-xs font-semibold text-success">Save {saving}% vs monthly</p>}
 
-      {plan.freeDomainNote && (
+      {freeDomainLine && (
         <p className="mt-3 rounded-md bg-brand-50 px-3 py-2 text-sm font-medium text-brand-800">
-          {plan.freeDomainNote}
+          {freeDomainLine}
         </p>
       )}
 
@@ -58,9 +74,7 @@ export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCyc
       </dl>
 
       {plan.includesFrom && (
-        <p className="mt-4 text-sm font-semibold text-ink">
-          Everything in {plan.includesFrom}, plus:
-        </p>
+        <p className="mt-4 text-sm font-semibold text-ink">Everything in {plan.includesFrom}, plus:</p>
       )}
       <ul className="mt-3 flex-1 space-y-2 text-sm text-ink-soft">
         {plan.features.map((feature) => (
@@ -71,11 +85,7 @@ export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCyc
         ))}
       </ul>
 
-      <Button
-        href={plan.purchaseUrl}
-        variant={plan.popular ? "primary" : "secondary"}
-        className="mt-6"
-      >
+      <Button href={plan.purchaseUrl} variant={plan.popular ? "primary" : "secondary"} className="mt-6">
         Choose {plan.name}
       </Button>
     </article>
