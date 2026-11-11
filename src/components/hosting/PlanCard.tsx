@@ -5,6 +5,7 @@ import type { BillingCycle, HostingPlan, PlanHighlights } from "@/types/hosting"
 
 // Card ke upar ke 6 numbers ke labels
 const highlightLabels: [keyof PlanHighlights, string][] = [
+  ["accounts", "cPanel accounts"],
   ["cpu", "CPU"],
   ["ram", "RAM"],
   ["storage", "Storage"],
@@ -30,6 +31,8 @@ const cycleNote: Record<BillingCycle, string> = {
 export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCycle }) {
   const price = plan.prices[cycle];
   const saving = plan.savings?.[cycle];
+  // Sirf wahi numbers dikhao jo is plan ke paas hain
+  const shownHighlights = highlightLabels.filter(([key]) => plan.highlights[key]);
 
   // Free domain ki line: yearly pe "first year included", baaki pe "on yearly billing"
   const freeDomainLine = plan.freeDomain
@@ -65,7 +68,7 @@ export function PlanCard({ plan, cycle }: { plan: HostingPlan; cycle: BillingCyc
 
       {/* Upar ke 6 numbers */}
       <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-line py-4 text-sm">
-        {highlightLabels.map(([key, label]) => (
+      {shownHighlights.map(([key, label]) => (
           <div key={key}>
             <dt className="text-ink-faint">{label}</dt>
             <dd className="font-semibold text-ink">{plan.highlights[key]}</dd>

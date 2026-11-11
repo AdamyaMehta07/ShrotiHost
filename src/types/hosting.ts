@@ -3,12 +3,13 @@ export type BillingCycle = "monthly" | "sixMonths" | "yearly";
 
 
 export interface PlanHighlights {
-  cpu: string;
-  ram: string;
-  storage: string;
-  websites: string;
-  email: string;
-  bandwidth: string;
+  accounts?: string;
+  cpu?: string;
+  ram?: string;
+  storage?: string;
+  websites?: string;
+  email?: string;
+  bandwidth?: string;
 }
 
 export interface HostingPlan {
