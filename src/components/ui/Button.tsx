@@ -11,6 +11,7 @@ interface ButtonProps {
   type?: "button" | "submit";
   disabled?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
 // Teeno styles ke classes ek jagah
@@ -27,6 +28,7 @@ export function Button({
   type = "button",
   disabled,
   className = "",
+  onClick,
 }: ButtonProps) {
   const classes = `inline-flex items-center justify-center gap-2 rounded-(--radius-control) px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant]} ${className}`;
 
@@ -48,8 +50,7 @@ export function Button({
   }
 
   return (
-    <button type={type} disabled={disabled} className={classes}>
-      {children}
+   <button type={type} disabled={disabled} onClick={onClick} className={classes}>
     </button>
   );
 }
